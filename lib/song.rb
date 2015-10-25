@@ -1,3 +1,14 @@
+require 'pry'
+
 class Song
-  # code goes here
+  attr_accessor :artist, :title
+
+  def initialize() end
+
+  def slugify
+    slug = @title.gsub(" ", "_").downcase
+    file = Tempfile.new([slug, ".txt"], "tmp")
+    file.write("#{self.artist.name} - #{self.title}")
+    file.close
+  end
 end
